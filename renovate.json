@@ -1,15 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
+  "dependencyDashboard": false,
   "prHourlyLimit": 10,
   "automerge": false,
-  "timezone": "Asia/Tokyo",
-  "schedule": ["after 4am and before 5am"],
   "minimumReleaseAge": "1 day",
   "rangeStrategy": "increase",
   "packageRules": [
     {
-      "matchPackageNames": ["prisma", "@prisma/client", "tsx", "vercel"],
+      "matchPackageNames": ["prisma", "@prisma/client", "tsx", "vercel", "@vercel/*"],
       "minimumReleaseAge": "0 days"
     }
   ]

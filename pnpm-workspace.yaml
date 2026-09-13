@@ -3,6 +3,7 @@ allowBuilds:
   '@prisma/engines': true
   esbuild: true
   lefthook: true
+  pnpm: true
   prisma: true
   puppeteer: true
 
@@ -10,7 +11,7 @@ engineStrict: true
 resolutionMode: highest
 # necessary for a PNPM bug: https://github.com/pnpm/pnpm/issues/5152#issuecomment-1223449173
 strictPeerDependencies: false
-packageImportMethod: clone-or-copy
+packageImportMethod: auto
 
 # Security configuration: supply chain attack mitigation
 # Delay the adoption of newly released packages to allow detection of malicious code
@@ -27,6 +28,35 @@ minimumReleaseAgeExclude:
   - tsx
   # Vercel: To use in a CI/CD environment
   - vercel
+  - '@vercel/*'
 
 # Prevent transitive dependencies from Git/Tarball sources (enhanced security)
 blockExoticSubdeps: true
+
+# Auto-remove GHSA entries from audit reports when they no longer appear
+audit:
+  ignorePrune: true
+
+# Security overrides: force transitive dependencies to patched versions
+# See: Issue #3761
+overrides:
+  # high
+  'path-to-regexp@>=6.0.0 <6.3.0': '6.3.0'
+  'path-to-regexp@>=8.0.0 <8.4.0': '8.4.2'
+  'tar@>=7.0.0 <7.5.8': '7.5.22'
+  'minimatch@>=10.0.0 <10.2.3': '10.2.6'
+  'undici@>=5.0.0 <5.28.5': '5.29.0'
+  'undici@>=6.0.0 <6.27.0': '6.28.1'
+  'undici@>=7.0.0 <7.28.0': '7.29.1'
+  'effect@>=3.0.0 <3.20.0': '3.22.1'
+  'defu@<6.1.5': '6.1.7'
+  'devalue@<5.8.1': '5.9.2'
+  # moderate
+  'ajv@>=8.0.0 <8.18.0': '8.20.0'
+  'brace-expansion@>=1.0.0 <1.1.13': '1.1.18'
+  'js-yaml@>=4.0.0 <=4.1.1': '4.3.2'
+  'postcss@>=8.0.0 <8.5.10': '8.5.28'
+  'smol-toml@>=1.0.0 <1.6.1': '1.8.0'
+  # low
+  'cookie@<0.7.0': '0.7.2'
+  '@tootallnate/once@>=2.0.0 <2.0.1': '2.0.1'

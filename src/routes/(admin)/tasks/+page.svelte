@@ -5,7 +5,7 @@
 
   import { Select, Label, Button, PaginationNav } from 'flowbite-svelte';
 
-  import type { Contests } from '$lib/types/contest';
+  import type { Contests } from '$lib/contests/types/contest';
 
   import { importSourceEntries, type ContestTaskImportSource } from '$lib/clients';
 
@@ -152,5 +152,6 @@
     onPageChange={(page) => {
       currentPage = page;
     }}
+    class="[&_button]:border-gray-300 [&_button]:dark:border-gray-700"
   />
 {/snippet}

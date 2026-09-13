@@ -2,41 +2,76 @@ import {
   type ContestTableMetaData,
   type ContestTableDisplayConfig,
 } from '$features/tasks/types/contest-table/contest_table_provider';
-import { ContestType } from '$lib/types/contest';
+import { ContestType } from '$lib/contests/types/contest';
 import type { TaskResult } from '$lib/types/task';
 
-import { classifyContest, getContestNameLabel } from '$lib/utils/contest';
+import { classifyContest, getContestNameLabel } from '$lib/contests';
 
 import { ContestTableProviderBase, parseContestRound } from './contest_table_provider_base';
 
-// AWC0001 〜 0099 (2026/02/09 〜 2026/06/25)
-// 5 tasks per contest
-export class AWC0001To0099Provider extends ContestTableProviderBase {
+interface AWCProviderConfig {
+  section: string;
+  title: string;
+  abbreviationName: string;
+}
+
+interface AWCRangeConfig extends AWCProviderConfig {
+  minRound: number;
+  maxRound: number;
+}
+
+interface AWCSpecialContestConfig extends AWCProviderConfig {
+  contestId: string;
+}
+
+const RANGE_DISPLAY_CONFIG: ContestTableDisplayConfig = {
+  isShownHeader: true,
+  isShownRoundLabel: true,
+  roundLabelWidth: 'xl:w-16',
+  tableBodyCellsWidth: 'w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-1 py-1',
+  isShownTaskIndex: false,
+};
+
+const SPECIAL_CONTEST_DISPLAY_CONFIG: ContestTableDisplayConfig = {
+  isShownHeader: false,
+  isShownRoundLabel: false,
+  roundLabelWidth: '',
+  tableBodyCellsWidth: 'w-1/2 xs:w-1/3 sm:w-1/4 md:w-1/5 lg:w-1/6 2xl:w-1/7 px-1 py-2',
+  isShownTaskIndex: true,
+};
+
+export class AWCRangeProvider extends ContestTableProviderBase {
+  private readonly minRound: number;
+  private readonly maxRound: number;
+  private readonly title: string;
+  private readonly abbreviationName: string;
+
+  constructor(contestType: ContestType, config: AWCRangeConfig) {
+    super(contestType, config.section);
+
+    this.minRound = config.minRound;
+    this.maxRound = config.maxRound;
+    this.title = config.title;
+    this.abbreviationName = config.abbreviationName;
+  }
+
   protected setFilterCondition(): (taskResult: TaskResult) => boolean {
     return (taskResult: TaskResult) => {
       if (classifyContest(taskResult.contest_id) !== this.contestType) {
         return false;
       }
+
       const contestRound = parseContestRound(taskResult.contest_id, 'awc');
-      return contestRound >= 1 && contestRound <= 99;
+      return contestRound >= this.minRound && contestRound <= this.maxRound;
     };
   }
 
   getMetadata(): ContestTableMetaData {
-    return {
-      title: 'AtCoder Weekday Contest 0001 〜 0099',
-      abbreviationName: 'awc0001To0099',
-    };
+    return { title: this.title, abbreviationName: this.abbreviationName };
   }
 
   getDisplayConfig(): ContestTableDisplayConfig {
-    return {
-      isShownHeader: true,
-      isShownRoundLabel: true,
-      roundLabelWidth: 'xl:w-16',
-      tableBodyCellsWidth: 'w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-1 py-1',
-      isShownTaskIndex: false,
-    };
+    return RANGE_DISPLAY_CONFIG;
   }
 
   getContestRoundLabel(contestId: string): string {
@@ -45,10 +80,17 @@ export class AWC0001To0099Provider extends ContestTableProviderBase {
   }
 }
 
-// AWC0100 (2026/06/26. special edition, 15 tasks: A-O)
-export class AWC0100Provider extends ContestTableProviderBase {
-  constructor(contestType: ContestType) {
-    super(contestType, '0100'); // provider key = 'AWC::0100'
+export class AWCSpecialContestProvider extends ContestTableProviderBase {
+  private readonly contestId: string;
+  private readonly title: string;
+  private readonly abbreviationName: string;
+
+  constructor(contestType: ContestType, config: AWCSpecialContestConfig) {
+    super(contestType, config.section);
+
+    this.contestId = config.contestId;
+    this.title = config.title;
+    this.abbreviationName = config.abbreviationName;
   }
 
   protected setFilterCondition(): (taskResult: TaskResult) => boolean {
@@ -57,22 +99,16 @@ export class AWC0100Provider extends ContestTableProviderBase {
         return false;
       }
 
-      return taskResult.contest_id === 'awc0100';
+      return taskResult.contest_id === this.contestId;
     };
   }
 
   getMetadata(): ContestTableMetaData {
-    return { title: 'AtCoder Weekday Contest 0100', abbreviationName: 'awc0100' };
+    return { title: this.title, abbreviationName: this.abbreviationName };
   }
 
   getDisplayConfig(): ContestTableDisplayConfig {
-    return {
-      isShownHeader: false,
-      isShownRoundLabel: false,
-      roundLabelWidth: '',
-      tableBodyCellsWidth: 'w-1/2 xs:w-1/3 sm:w-1/4 md:w-1/5 lg:w-1/6 2xl:w-1/7 px-1 py-2',
-      isShownTaskIndex: true,
-    };
+    return SPECIAL_CONTEST_DISPLAY_CONFIG;
   }
 
   getContestRoundLabel(_contestId: string): string {

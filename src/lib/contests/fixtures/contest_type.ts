@@ -1,0 +1,750 @@
+import { createTestCase } from '../../../test/lib/common/test_helpers';
+import { ContestType } from '$lib/contests/types/contest';
+
+export type TestCaseForContestType = {
+  contestId: string;
+  expected: ContestType;
+};
+
+const createTestCaseForContestType = createTestCase<TestCaseForContestType>;
+
+export const abs = [
+  createTestCaseForContestType('ABS')({
+    contestId: 'abs',
+    expected: ContestType.ABS,
+  }),
+];
+
+const abcContestIds = [
+  'abc001',
+  'abc002',
+  'abc099',
+  'abc100',
+  'abc101',
+  'abc200',
+  'abc201',
+  'abc365',
+  'abc999',
+];
+
+export const abc = abcContestIds.map((contestId) =>
+  createTestCaseForContestType(contestId.toUpperCase())({
+    contestId,
+    expected: ContestType.ABC,
+  }),
+);
+
+export const apg4b = [
+  createTestCaseForContestType('APG4b')({
+    contestId: 'APG4b',
+    expected: ContestType.APG4B,
+  }),
+];
+
+export const typical90 = [
+  createTestCaseForContestType('Typical90')({
+    contestId: 'typical90',
+    expected: ContestType.TYPICAL90,
+  }),
+];
+
+export const edpc = [
+  createTestCaseForContestType('EDPC')({
+    contestId: 'dp',
+    expected: ContestType.EDPC,
+  }),
+];
+
+export const tdpc = [
+  createTestCaseForContestType('TDPC')({
+    contestId: 'tdpc',
+    expected: ContestType.TDPC,
+  }),
+];
+
+export const ndpc = [
+  createTestCaseForContestType('NDPC')({
+    contestId: 'ndpc',
+    expected: ContestType.NDPC,
+  }),
+];
+
+const pastContestData = [
+  { name: 'PAST 1st', contestId: 'past201912-open' },
+  { name: 'PAST 2nd', contestId: 'past202004-open' },
+  { name: 'PAST 3rd', contestId: 'past202005-open' },
+  { name: 'PAST 13th', contestId: 'past202212-open' },
+  { name: 'PAST 14th', contestId: 'past202303-open' },
+  { name: 'PAST 15th', contestId: 'past15-open' },
+  { name: 'PAST 16th', contestId: 'past16-open' },
+  { name: 'PAST 17th', contestId: 'past17-open' },
+  { name: '典型アルゴリズム問題集 上級〜エキスパート編', contestId: 'pastbook2022' },
+];
+
+export const past = pastContestData.map(({ name, contestId }) =>
+  createTestCaseForContestType(name)({
+    contestId: contestId,
+    expected: ContestType.PAST,
+  }),
+);
+
+export const aclPractice = [
+  createTestCaseForContestType('ACL Practice')({
+    contestId: 'practice2',
+    expected: ContestType.ACL_PRACTICE,
+  }),
+];
+
+const joiContestData = [
+  // Historical JOI Qualifiers (2006-2007)
+  { name: 'JOI 2006 qual', contestId: 'joi2006yo' },
+  { name: 'JOI 2007 qual', contestId: 'joi2007yo' },
+  { name: 'JOI 2018 qual', contestId: 'joi2018yo' },
+  { name: 'JOI 2019 qual', contestId: 'joi2019yo' },
+  // Recent JOI Qualifiers (2024-)
+  { name: 'JOI 2024 qual 1A', contestId: 'joi2024yo1a' },
+  { name: 'JOI 2024 qual 1B', contestId: 'joi2024yo1b' },
+  { name: 'JOI 2024 qual 1C', contestId: 'joi2024yo1c' },
+  { name: 'JOI 2025 qual 1A', contestId: 'joi2025yo1a' },
+  { name: 'JOI 2025 qual 1B', contestId: 'joi2025yo1b' },
+  { name: 'JOI 2025 qual 1C', contestId: 'joi2025yo1c' },
+  { name: 'JOI 2020 qual 2', contestId: 'joi2020yo2' },
+  { name: 'JOI 2023 qual 2', contestId: 'joi2023yo2' },
+  { name: 'JOI 2024 qual 2', contestId: 'joi2024yo2' },
+  //JOI Finals (2006-)
+  { name: 'JOI 2006 final', contestId: 'joi2006ho' },
+  { name: 'JOI 2007 final', contestId: 'joi2007ho' },
+  { name: 'JOI 2019 final', contestId: 'joi2019ho' },
+  { name: 'JOI 2020 final', contestId: 'joi2020ho' },
+  { name: 'JOI 2022 final', contestId: 'joi2022ho' },
+  { name: 'JOI 2023 final', contestId: 'joi2023ho' },
+  { name: 'JOI 2024 final', contestId: 'joi2024ho' },
+  // JOI Spring Camp (2007-)
+  { name: 'JOI 2007 Spring', contestId: 'joisc2007' },
+  { name: 'JOI 2008 Spring', contestId: 'joisc2008' },
+  { name: 'JOI 2020 Spring', contestId: 'joisc2020' },
+  { name: 'JOI 2022 Spring', contestId: 'joisc2022' },
+  { name: 'JOI 2023 Spring', contestId: 'joisp2023' },
+  { name: 'JOI 2024 Spring', contestId: 'joisp2024' },
+  // JOI Open Contests (2022-)
+  { name: 'JOI Open 2022', contestId: 'joiopen2022' },
+  { name: 'JOI Open 2023', contestId: 'joiopen2023' },
+  { name: 'JOI Open 2024', contestId: 'joiopen2024' },
+  // JOIG Contests (2021-)
+  { name: 'JOIG 2021 open', contestId: 'joig2021-open' },
+  { name: 'JOIG 2022 open', contestId: 'joig2022-open' },
+  { name: 'JOIG 2023 open', contestId: 'joig2023-open' },
+  { name: 'JOIG 2024 open', contestId: 'joig2024-open' },
+  // JOIG Spring Camp (2022-)
+  // Note: Contest ID pattern changed from joisc to joisp starting from 2023
+  { name: 'JOIG 2022 Spring', contestId: 'joigsc2022' },
+  { name: 'JOIG 2023 Spring', contestId: 'joigsp2023' },
+  { name: 'JOIG 2024 Spring', contestId: 'joigsp2024' },
+];
+
+export const joi = joiContestData.map(({ name, contestId }) =>
+  createTestCaseForContestType(name)({
+    contestId: contestId,
+    expected: ContestType.JOI,
+  }),
+);
+
+export const tessokuBook = [
+  createTestCaseForContestType('Tessoku Book')({
+    contestId: 'tessoku-book',
+    expected: ContestType.TESSOKU_BOOK,
+  }),
+];
+
+export const mathAndAlgorithm = [
+  createTestCaseForContestType('Math and Algorithm')({
+    contestId: 'math-and-algorithm',
+    expected: ContestType.MATH_AND_ALGORITHM,
+  }),
+];
+
+export const fps24 = [
+  createTestCaseForContestType('FPS 24')({
+    contestId: 'fps-24',
+    expected: ContestType.FPS_24,
+  }),
+];
+
+const arcContestIds = [
+  'arc001',
+  'arc002',
+  'arc057',
+  'arc058',
+  'arc099',
+  'arc100',
+  'arc101',
+  'arc103',
+  'arc104',
+  'arc105',
+  'arc182',
+  'arc183',
+];
+
+export const arc = arcContestIds.map((contestId) =>
+  createTestCaseForContestType(contestId.toUpperCase())({
+    contestId,
+    expected: ContestType.ARC,
+  }),
+);
+
+const agcContestIds = ['agc001', 'agc002', 'agc009', 'agc010', 'agc011', 'agc066', 'agc067'];
+
+export const agc = agcContestIds.map((contestId) =>
+  createTestCaseForContestType(contestId.toUpperCase())({
+    contestId,
+    expected: ContestType.AGC,
+  }),
+);
+
+export const abcLike = [
+  createTestCaseForContestType('Tenka1 Programmer Beginner Contest 2017')({
+    contestId: 'tenka1-2017-beginner',
+    expected: ContestType.ABC_LIKE,
+  }),
+  createTestCaseForContestType('ACL Beginner Contest')({
+    contestId: 'abl',
+    expected: ContestType.ABC_LIKE,
+  }),
+  createTestCaseForContestType('CADDi 2018 for Beginners')({
+    contestId: 'caddi2018b',
+    expected: ContestType.ABC_LIKE,
+  }),
+  createTestCaseForContestType('SoundHound Inc. Programming Contest 2018 -Masters Tournament-')({
+    contestId: 'soundhound2018-summer-qual',
+    expected: ContestType.ABC_LIKE,
+  }),
+  createTestCaseForContestType('Tenka1 Programmer Beginner Contest 2018')({
+    contestId: 'tenka1-2018-beginner',
+    expected: ContestType.ABC_LIKE,
+  }),
+  createTestCaseForContestType('エイシング プログラミング コンテスト 2019')({
+    contestId: 'aising2019',
+    expected: ContestType.ABC_LIKE,
+  }),
+  createTestCaseForContestType('三井住友信託銀行プログラミングコンテスト2019')({
+    contestId: 'sumitrust2019',
+    expected: ContestType.ABC_LIKE,
+  }),
+  createTestCaseForContestType('Tenka1 Programmer Beginner Contest 2019')({
+    contestId: 'tenka1-2019-beginner',
+    expected: ContestType.ABC_LIKE,
+  }),
+  createTestCaseForContestType('AISing 2020')({
+    contestId: 'aising2020',
+    expected: ContestType.ABC_LIKE,
+  }),
+  createTestCaseForContestType('HHKB 2020')({
+    contestId: 'hhkb2020',
+    expected: ContestType.ABC_LIKE,
+  }),
+  createTestCaseForContestType('M-SOLUTIONS プロコンオープン 2020')({
+    contestId: 'm-solutions2020',
+    expected: ContestType.ABC_LIKE,
+  }),
+  createTestCaseForContestType('Panasonic 2020')({
+    contestId: 'panasonic2020',
+    expected: ContestType.ABC_LIKE,
+  }),
+  createTestCaseForContestType('Japanese Student Championship 2021')({
+    contestId: 'jsc2021',
+    expected: ContestType.ABC_LIKE,
+  }),
+  createTestCaseForContestType('ZONeエナジー プログラミングコンテスト “HELLO SPACE”')({
+    contestId: 'zone2021',
+    expected: ContestType.ABC_LIKE,
+  }),
+  createTestCaseForContestType('日本最強プログラマー学生選手権～Advance～')({
+    contestId: 'jsc2025advance-final',
+    expected: ContestType.ABC_LIKE,
+  }),
+];
+
+export const arcLike = [
+  createTestCaseForContestType('Tenka1 2017')({
+    contestId: 'tenka1-2017',
+    expected: ContestType.ARC_LIKE,
+  }),
+  createTestCaseForContestType('Tenka1 2018')({
+    contestId: 'tenka1-2018',
+    expected: ContestType.ARC_LIKE,
+  }),
+  createTestCaseForContestType('Tenka1 2019')({
+    contestId: 'tenka1-2019',
+    expected: ContestType.ARC_LIKE,
+  }),
+  createTestCaseForContestType('CADDi 2018')({
+    contestId: 'caddi2018',
+    expected: ContestType.ARC_LIKE,
+  }),
+  createTestCaseForContestType('DWACON 5TH PRELIMS')({
+    contestId: 'dwacon5th-prelims',
+    expected: ContestType.ARC_LIKE,
+  }),
+  createTestCaseForContestType('DWACON 6TH PRELIMS')({
+    contestId: 'dwacon6th-prelims',
+    expected: ContestType.ARC_LIKE,
+  }),
+  createTestCaseForContestType('diverta 2019 Programming Contest')({
+    contestId: 'diverta2019',
+    expected: ContestType.ARC_LIKE,
+  }),
+  createTestCaseForContestType('KEYENCE2019')({
+    contestId: 'keyence2019',
+    expected: ContestType.ARC_LIKE,
+  }),
+  createTestCaseForContestType('KEYENCE2020')({
+    contestId: 'keyence2020',
+    expected: ContestType.ARC_LIKE,
+  }),
+  createTestCaseForContestType('KEYENCE2021')({
+    contestId: 'keyence2021',
+    expected: ContestType.ARC_LIKE,
+  }),
+  createTestCaseForContestType('JSC2019 QUAL')({
+    contestId: 'jsc2019-qual',
+    expected: ContestType.ARC_LIKE,
+  }),
+  createTestCaseForContestType('NIKKEI2019 QUAL')({
+    contestId: 'nikkei2019-qual',
+    expected: ContestType.ARC_LIKE,
+  }),
+  createTestCaseForContestType('ACL1')({
+    contestId: 'acl1',
+    expected: ContestType.ARC_LIKE,
+  }),
+];
+
+export const agcLike = [
+  createTestCaseForContestType('CODE FESTIVAL 2016 qual A')({
+    contestId: 'code-festival-2016-quala',
+    expected: ContestType.AGC_LIKE,
+  }),
+  createTestCaseForContestType('CODE FESTIVAL 2016 qual B')({
+    contestId: 'code-festival-2016-qualb',
+    expected: ContestType.AGC_LIKE,
+  }),
+  createTestCaseForContestType('CODE FESTIVAL 2017 qual A')({
+    contestId: 'code-festival-2017-quala',
+    expected: ContestType.AGC_LIKE,
+  }),
+  createTestCaseForContestType('CODE FESTIVAL 2017 qual B')({
+    contestId: 'code-festival-2017-qualb',
+    expected: ContestType.AGC_LIKE,
+  }),
+  createTestCaseForContestType('CODE FESTIVAL 2017 qual C')({
+    contestId: 'code-festival-2017-qualc',
+    expected: ContestType.AGC_LIKE,
+  }),
+  createTestCaseForContestType('CODE FESTIVAL 2016 final')({
+    contestId: 'cf16-final',
+    expected: ContestType.AGC_LIKE,
+  }),
+  createTestCaseForContestType('CODE FESTIVAL 2017 final')({
+    contestId: 'cf17-final',
+    expected: ContestType.AGC_LIKE,
+  }),
+];
+
+const awcContestIds = ['awc0001', 'awc0002', 'awc9999'];
+
+export const awc = awcContestIds.map((contestId) =>
+  createTestCaseForContestType(contestId.toUpperCase())({
+    contestId,
+    expected: ContestType.AWC,
+  }),
+);
+
+// Note:
+// KUPC contests on AtCoder: 2012-2021 and 2024- (not held during 2022-2023)
+// QUPC contests on AtCoder: 2014, 2018 (not held during 2015-2017, 2019-)
+// UTPC contests on AtCoder: 2011-2014 and 2020-2023 (not held during 2015-2019)
+// TTPC contests on AtCoder: 2015, 2019, 2022-
+// TUPC contests on AtCoder: 2022-
+// WUPC contests on AtCoder: 2019
+//
+// See:
+// https://kenkoooo.com/atcoder/resources/contests.json
+const universityContestIds = [
+  'kupc2012',
+  'kupc2013',
+  'kupc2014',
+  'kupc2019',
+  'kupc2020',
+  'kupc2021',
+  'kupc2024',
+  'qupc2014',
+  'qupc2018',
+  'utpc2011',
+  'utpc2012',
+  'utpc2013',
+  'utpc2014',
+  'utpc2020',
+  'utpc2021',
+  'utpc2022',
+  'utpc2023',
+  'ttpc2015',
+  'ttpc2019',
+  'ttpc2022',
+  'ttpc2023',
+  'tupc2022',
+  'tupc2023',
+  'wupc2019',
+];
+
+export const universities = universityContestIds.map((contestId) =>
+  createTestCaseForContestType(contestId.toUpperCase())({
+    contestId,
+    expected: ContestType.UNIVERSITY,
+  }),
+);
+
+export const atCoderOthers = [
+  createTestCaseForContestType('Chokudai SpeedRun 001')({
+    contestId: 'chokudai_S001',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('Chokudai SpeedRun 002')({
+    contestId: 'chokudai_S002',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('AtCoder Typical Contest 001')({
+    contestId: 'atc001',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('幾何コンテスト2013')({
+    contestId: 'geocon2013',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('square869120Contest #3')({
+    contestId: 's8pc-3',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('square869120Contest #4')({
+    contestId: 's8pc-4',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('Maximum-Cup 2013')({
+    contestId: 'maximum-cup-2013',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('Maximum-Cup 2018')({
+    contestId: 'maximum-cup-2018',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('CODE FESTIVAL 2014 qual A')({
+    contestId: 'code-festival-2014-quala',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('CODE FESTIVAL 2014 qual B')({
+    contestId: 'code-festival-2014-qualb',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('CODE FESTIVAL 2014 final')({
+    contestId: 'code-festival-2014-final',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('CODE FESTIVAL 2014 上海')({
+    contestId: 'code-festival-2014-china-open',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('CODE FESTIVAL 2015 qual B')({
+    contestId: 'code-festival-2015-qualb',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('CODE FESTIVAL 2015 あさぷろ Middle')({
+    contestId: 'code-festival-2015-morning-middle',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('CODE FESTIVAL 2015 エキシビション')({
+    contestId: 'code-festival-2015-exhibition',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('CODE THANKS FESTIVAL 2017')({
+    contestId: 'code-thanks-festival-2017',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('CODE THANKS FESTIVAL 2018')({
+    contestId: 'code-thanks-festival-2018',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('Donuts Procon Challenge 2014')({
+    contestId: 'donuts-live2014',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('Donuts Procon Challenge 2015')({
+    contestId: 'donuts-2015',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('IndeedNow Qual B')({
+    contestId: 'indeednow-qualb',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('技術室奥プログラミングコンテスト#4 Day2')({
+    contestId: 'tkppc4-2',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('第2回 ドワンゴからの挑戦状 予選')({
+    contestId: 'dwango2016-prelims',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('第3回 ドワンゴからの挑戦状 予選')({
+    contestId: 'dwacon2017-prelims',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('MUJIN Programming Challenge 2016')({
+    contestId: 'mujin-pc-2016',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('MUJIN Programming Challenge 2018')({
+    contestId: 'mujin-pc-2018',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('SoundHound Inc. Programming Contest 2018 (春)')({
+    contestId: 'soundhound2018',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('codeFlyer （bitFlyer Programming Contest）')({
+    contestId: 'bitflyer2018-qual',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('パ研合宿コンペティション 3日目')({
+    contestId: 'pakencamp-2018-day3',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('パ研合宿2024 第1日「SpeedRun」')({
+    contestId: 'pakencamp-2024-day1',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('天下一プログラマーコンテスト2012予選B')({
+    contestId: 'tenka1-2012-qualB',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('天下一プログラマーコンテスト2015予選A')({
+    contestId: 'tenka1-2015-quala',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('天下一プログラマーコンテスト2015予選B')({
+    contestId: 'tenka1-2015-qualb',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('天下一プログラマーコンテスト2016本戦')({
+    contestId: 'tenka1-2016-final',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType(
+    'DISCO presents ディスカバリーチャンネル プログラミングコンテスト2016',
+  )({
+    contestId: 'discovery2016',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('COLOCON 2018 qual')({
+    contestId: 'colopl2018-qual',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('COLOCON 2018 final')({
+    contestId: 'colopl2018-final',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('Gigacode 2019')({
+    contestId: 'gigacode-2019',
+    expected: ContestType.OTHERS,
+  }),
+  ...[1, 2, 3, 4].map((session) =>
+    createTestCaseForContestType(`CPSCO2019 Session${session}`)({
+      contestId: `cpsco2019-s${session}`,
+      expected: ContestType.OTHERS,
+    }),
+  ),
+  createTestCaseForContestType('いろはちゃんコンテスト Day4')({
+    contestId: 'iroha2019-day4',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('全国統一プログラミング王決定戦本戦')({
+    contestId: 'nikkei2019-final',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('第一回日本最強プログラマー学生選手権決勝')({
+    contestId: 'jsc2019-final',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('第六回日本最強プログラマー学生選手権 -決勝-')({
+    contestId: 'jsc2025-final',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('DEGwer さんの D 論応援コンテスト')({
+    contestId: 'DEGwer2023',
+    expected: ContestType.OTHERS,
+  }),
+  createTestCaseForContestType('Xmas Contest 2019')({
+    contestId: 'xmascon19',
+    expected: ContestType.OTHERS,
+  }),
+];
+
+export const atCoderMainOfficialOnsite = [
+  createTestCaseForContestType('World Tour Finals 2019')({
+    contestId: 'wtf19-open',
+    expected: ContestType.ATCODER_MAIN_OFFICIAL_ONSITE,
+  }),
+  createTestCaseForContestType('World Tour Finals 2022 Day1')({
+    contestId: 'wtf22-day1-open',
+    expected: ContestType.ATCODER_MAIN_OFFICIAL_ONSITE,
+  }),
+  // Note: Unlike wtf22-day1, the actual seeded contest_id has no "-open" suffix.
+  createTestCaseForContestType('World Tour Finals 2022 Day2')({
+    contestId: 'wtf22-day2',
+    expected: ContestType.ATCODER_MAIN_OFFICIAL_ONSITE,
+  }),
+  createTestCaseForContestType('World Tour Finals 2024')({
+    contestId: 'awtf2024-open',
+    expected: ContestType.ATCODER_MAIN_OFFICIAL_ONSITE,
+  }),
+  createTestCaseForContestType('World Tour Finals 2025 Algorithm')({
+    contestId: 'awtf2025algo-open',
+    expected: ContestType.ATCODER_MAIN_OFFICIAL_ONSITE,
+  }),
+  createTestCaseForContestType('World Tour Finals 2026 Algorithm')({
+    contestId: 'awtf2026algo-open',
+    expected: ContestType.ATCODER_MAIN_OFFICIAL_ONSITE,
+  }),
+];
+
+// See:
+// getPrefixForAojCourses() in src/lib/contests/
+const aojCoursesData = [
+  { name: 'AOJ Courses, ITP1', contestId: 'ITP1' },
+  { name: 'AOJ Courses, ALDS1', contestId: 'ALDS1' },
+  { name: 'AOJ Courses, ITP2', contestId: 'ITP2' },
+  { name: 'AOJ Courses, DPL', contestId: 'DPL' },
+  { name: 'AOJ Courses, GRL', contestId: 'GRL' },
+  { name: 'AOJ Courses, DSL', contestId: 'DSL' },
+  { name: 'AOJ Courses, CGL', contestId: 'CGL' },
+  { name: 'AOJ Courses, NTL', contestId: 'NTL' },
+];
+
+export const aojCourses = aojCoursesData.map(({ name, contestId }) =>
+  createTestCaseForContestType(name)({
+    contestId: contestId,
+    expected: ContestType.AOJ_COURSES,
+  }),
+);
+
+const aojPckContestData = [
+  { name: 'AOJ, PCK Prelim 2004', contestId: 'PCKPrelim2004' },
+  { name: 'AOJ, PCK Prelim 2005', contestId: 'PCKPrelim2005' },
+  { name: 'AOJ, PCK Prelim 2009', contestId: 'PCKPrelim2009' },
+  { name: 'AOJ, PCK Prelim 2010', contestId: 'PCKPrelim2010' },
+  { name: 'AOJ, PCK Prelim 2011', contestId: 'PCKPrelim2011' },
+  { name: 'AOJ, PCK Prelim 2020', contestId: 'PCKPrelim2020' },
+  { name: 'AOJ, PCK Prelim 2021', contestId: 'PCKPrelim2021' },
+  { name: 'AOJ, PCK Prelim 2022', contestId: 'PCKPrelim2022' },
+  { name: 'AOJ, PCK Prelim 2023', contestId: 'PCKPrelim2023' },
+  { name: 'AOJ, PCK Final 2003', contestId: 'PCKFinal2003' },
+  { name: 'AOJ, PCK Final 2004', contestId: 'PCKFinal2004' },
+  { name: 'AOJ, PCK Final 2009', contestId: 'PCKFinal2009' },
+  { name: 'AOJ, PCK Final 2010', contestId: 'PCKFinal2010' },
+  { name: 'AOJ, PCK Final 2011', contestId: 'PCKFinal2011' },
+  { name: 'AOJ, PCK Final 2020', contestId: 'PCKFinal2020' },
+  { name: 'AOJ, PCK Final 2021', contestId: 'PCKFinal2021' },
+  { name: 'AOJ, PCK Final 2022', contestId: 'PCKFinal2022' },
+  { name: 'AOJ, PCK Final 2023', contestId: 'PCKFinal2023' },
+];
+
+export const aojPck = aojPckContestData.map(({ name, contestId }) =>
+  createTestCaseForContestType(name)({
+    contestId: contestId,
+    expected: ContestType.AOJ_PCK,
+  }),
+);
+
+const aojJagContestData = [
+  { name: 'AOJ, JAG Prelim 2005', contestId: 'JAGPrelim2005' },
+  { name: 'AOJ, JAG Prelim 2006', contestId: 'JAGPrelim2006' },
+  { name: 'AOJ, JAG Prelim 2009', contestId: 'JAGPrelim2009' },
+  { name: 'AOJ, JAG Prelim 2010', contestId: 'JAGPrelim2010' },
+  { name: 'AOJ, JAG Prelim 2011', contestId: 'JAGPrelim2011' },
+  { name: 'AOJ, JAG Prelim 2020', contestId: 'JAGPrelim2020' },
+  { name: 'AOJ, JAG Prelim 2021', contestId: 'JAGPrelim2021' },
+  { name: 'AOJ, JAG Prelim 2022', contestId: 'JAGPrelim2022' },
+  { name: 'AOJ, JAG Prelim 2023', contestId: 'JAGPrelim2023' },
+  { name: 'AOJ, JAG Prelim 2024', contestId: 'JAGPrelim2024' },
+  { name: 'AOJ, JAG Prelim 2025', contestId: 'JAGPrelim2025' },
+  { name: 'AOJ, JAG Prelim 2026', contestId: 'JAGPrelim2026' },
+  { name: 'AOJ, JAG Prelim 2016 A', contestId: 'JAGPrelim2016A' },
+  { name: 'AOJ, JAG Prelim 2016 B', contestId: 'JAGPrelim2016B' },
+  { name: 'AOJ, JAG Regional 2005', contestId: 'JAGRegional2005' },
+  { name: 'AOJ, JAG Regional 2006', contestId: 'JAGRegional2006' },
+  { name: 'AOJ, JAG Regional 2009', contestId: 'JAGRegional2009' },
+  { name: 'AOJ, JAG Regional 2010', contestId: 'JAGRegional2010' },
+  { name: 'AOJ, JAG Regional 2011', contestId: 'JAGRegional2011' },
+  { name: 'AOJ, JAG Regional 2016', contestId: 'JAGRegional2016' },
+  { name: 'AOJ, JAG Regional 2017', contestId: 'JAGRegional2017' },
+  { name: 'AOJ, JAG Regional 2020', contestId: 'JAGRegional2020' },
+  { name: 'AOJ, JAG Regional 2021', contestId: 'JAGRegional2021' },
+  { name: 'AOJ, JAG Regional 2022', contestId: 'JAGRegional2022' },
+  { name: 'AOJ, JAG Spring 2012', contestId: 'JAGSpring2012' },
+  { name: 'AOJ, JAG Spring 2015', contestId: 'JAGSpring2015' },
+  { name: 'AOJ, JAG Winter 2009', contestId: 'JAGWinter2009' },
+  { name: 'AOJ, JAG Winter 2011', contestId: 'JAGWinter2011' },
+  { name: 'AOJ, JAG Summer 2006 day1', contestId: 'JAGSummer2006-day1' },
+  { name: 'AOJ, JAG Summer 2006 day2', contestId: 'JAGSummer2006-day2' },
+  { name: 'AOJ, JAG Winter 2006 day2', contestId: 'JAGWinter2006-day2' },
+  { name: 'AOJ, JAG Summer 2023 day2', contestId: 'JAGSummer2023-day2' },
+  { name: 'AOJ, JAG Summer 2024 day2', contestId: 'JAGSummer2024-day2' },
+  { name: 'AOJ, JAG Summer 2024 day3', contestId: 'JAGSummer2024-day3' },
+  { name: 'AOJ, JAG Summer 2012 day3A', contestId: 'JAGSummer2012-day3A' },
+  { name: 'AOJ, JAG Summer 2012 day3B', contestId: 'JAGSummer2012-day3B' },
+];
+
+export const aojJag = aojJagContestData.map(({ name, contestId }) =>
+  createTestCaseForContestType(name)({
+    contestId: contestId,
+    expected: ContestType.AOJ_JAG,
+  }),
+);
+
+const aojIcpcContestData = [
+  { name: 'AOJ, ICPC Prelim 2023', contestId: 'ICPCPrelim2023' },
+  { name: 'AOJ, ICPC Prelim 2024', contestId: 'ICPCPrelim2024' },
+  { name: 'AOJ, ICPC Regional 2023', contestId: 'ICPCRegional2023' },
+  { name: 'AOJ, ICPC Regional 2024', contestId: 'ICPCRegional2024' },
+];
+
+export const aojIcpc = aojIcpcContestData.map(({ name, contestId }) =>
+  createTestCaseForContestType(name)({
+    contestId,
+    expected: ContestType.AOJ_ICPC,
+  }),
+);
+
+const aojUniversityContestData = [
+  { name: 'AOJ, RUPC 2025 in ACPC 2025 Day1', contestId: 'AOJ-RUPC2025-in-ACPC2025-day1' },
+  { name: 'AOJ, RUPC 2018 in ACPC 2018 Day1', contestId: 'AOJ-RUPC2018-in-ACPC2018-day1' },
+  { name: 'AOJ, HUPC 2020 in HUPC 2020 Day3', contestId: 'AOJ-HUPC2020-in-HUPC2020-day3' },
+  { name: 'AOJ, HUPC 2020 in HUPC 2020 Day1', contestId: 'AOJ-HUPC2020-in-HUPC2020-day1' },
+  { name: 'AOJ, HUPC 2018 in ACPC 2018 Day3', contestId: 'AOJ-HUPC2018-in-ACPC2018-day3' },
+  { name: 'AOJ, UAPC 2019 in RUPC 2019 Day2', contestId: 'AOJ-UAPC2019-in-RUPC2019-day2' },
+  { name: 'AOJ, UAPC 2017 in ACPC 2017 Day2', contestId: 'AOJ-UAPC2017-in-ACPC2017-day2' },
+  { name: 'AOJ, UAPC 2003', contestId: 'AOJ-UAPC2003' },
+  { name: 'AOJ, UAPC 2011 Summer', contestId: 'AOJ-UAPC2011-summer' },
+  { name: 'AOJ, UAPC 2012 Day1', contestId: 'AOJ-UAPC2012-day1' },
+  { name: 'AOJ, OUPC 2012 in RUPC 2012 Day2', contestId: 'AOJ-OUPC2012-in-RUPC2012-day2' },
+  { name: 'AOJ, OUPC 2020', contestId: 'AOJ-OUPC2020' },
+  { name: 'AOJ, OUPC 2024 Day1', contestId: 'AOJ-OUPC2024-day1' },
+  { name: 'AOJ, RUPC 2017 in ACPC 2017 Day1', contestId: 'AOJ-RUPC2017-in-ACPC2017-day1' },
+  { name: 'AOJ, HUPC 2019 in HUPC 2019 Day2', contestId: 'AOJ-HUPC2019-in-HUPC2019-day2' },
+  { name: 'AOJ, UAPC 2018 in RUPC 2018 Day2', contestId: 'AOJ-UAPC2018-in-RUPC2018-day2' },
+  { name: 'AOJ, UTPC 2010', contestId: 'AOJ-UTPC2010' },
+];
+
+export const aojUniversity = aojUniversityContestData.map(({ name, contestId }) =>
+  createTestCaseForContestType(name)({
+    contestId,
+    expected: ContestType.AOJ_UNIVERSITY,
+  }),
+);

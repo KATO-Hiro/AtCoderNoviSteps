@@ -1,4 +1,4 @@
-import { ContestType } from '$lib/types/contest';
+import { ContestType } from '$lib/contests/types/contest';
 
 import { ABSProvider } from './abs_provider';
 import {
@@ -15,7 +15,7 @@ import {
 } from './arc_providers';
 import { AGC001OnwardsProvider } from './agc_provider';
 import { ABCLikeProvider } from './axc_like_provider';
-import { AWC0001To0099Provider, AWC0100Provider } from './awc_provider';
+import { AWCRangeProvider, AWCSpecialContestProvider } from './awc_provider';
 import { Typical90Provider } from './typical90_provider';
 import {
   TessokuBookForExamplesProvider,
@@ -33,13 +33,20 @@ import {
   JOISemiFinalRoundProvider,
 } from './joi_providers';
 import { AojIcpcPrelimProvider, AojIcpcRegionalProvider } from './aoj_icpc_providers';
+import { JagPrelimProvider } from './aoj_jag_providers';
 import { ContestTableProviderGroup } from './contest_table_provider_group';
 
 export const ICPC_PRELIM_OLDEST_YEAR = 1998;
-export const ICPC_PRELIM_LATEST_YEAR = 2025;
+export const ICPC_PRELIM_LATEST_YEAR = 2026;
 
 export const ICPC_REGIONAL_OLDEST_YEAR = 1998;
 export const ICPC_REGIONAL_LATEST_YEAR = 2024;
+
+export const JAG_PRELIM_OLDEST_YEAR = 2005;
+export const JAG_PRELIM_LATEST_YEAR = 2026;
+// 2016 was held twice in the same year, split into JAGPrelim2016A / JAGPrelim2016B.
+// Kept as data so future split years only need to be added to this set.
+const JAG_PRELIM_YEARS_HELD_AS_A_AND_B = new Set([2016]);
 
 /**
  * Prepare predefined provider groups
@@ -154,8 +161,49 @@ export const prepareContestProviderPresets = () => {
         buttonLabel: 'AWC 0001 〜 ',
         ariaLabel: 'Filter contests from AWC 0001 onwards',
       })
-        .addProvider(new AWC0100Provider(ContestType.AWC))
-        .addProvider(new AWC0001To0099Provider(ContestType.AWC)),
+        .addProvider(
+          new AWCRangeProvider(ContestType.AWC, {
+            section: '0151Onwards',
+            minRound: 151,
+            maxRound: 9999,
+            title: 'AtCoder Weekday Contest 0151 〜',
+            abbreviationName: 'awc0151Onwards',
+          }),
+        )
+        .addProvider(
+          new AWCSpecialContestProvider(ContestType.AWC, {
+            section: '0150',
+            contestId: 'awc0150',
+            title: 'AtCoder Weekday Contest 0150',
+            abbreviationName: 'awc0150',
+          }),
+        )
+        .addProvider(
+          new AWCRangeProvider(ContestType.AWC, {
+            section: '0101To0149',
+            minRound: 101,
+            maxRound: 149,
+            title: 'AtCoder Weekday Contest 0101 〜 0149',
+            abbreviationName: 'awc0101To0149',
+          }),
+        )
+        .addProvider(
+          new AWCSpecialContestProvider(ContestType.AWC, {
+            section: '0100',
+            contestId: 'awc0100',
+            title: 'AtCoder Weekday Contest 0100',
+            abbreviationName: 'awc0100',
+          }),
+        )
+        .addProvider(
+          new AWCRangeProvider(ContestType.AWC, {
+            section: '0001To0099',
+            minRound: 1,
+            maxRound: 99,
+            title: 'AtCoder Weekday Contest 0001 〜 0099',
+            abbreviationName: 'awc0001To0099',
+          }),
+        ),
 
     /**
      * Single group for Typical 90 Problems
@@ -259,6 +307,25 @@ export const prepareContestProviderPresets = () => {
 
       return group;
     },
+
+    AojJagPrelim: () => {
+      const group = new ContestTableProviderGroup('JAG 模擬国内', {
+        buttonLabel: 'JAG 模擬国内',
+        ariaLabel: 'Filter JAG Domestic Preliminary',
+      });
+      // Iterate from latest to oldest so the newest year's table renders on top.
+      // addProvider order = display order (first = top).
+      for (let year = JAG_PRELIM_LATEST_YEAR; year >= JAG_PRELIM_OLDEST_YEAR; year--) {
+        if (JAG_PRELIM_YEARS_HELD_AS_A_AND_B.has(year)) {
+          group.addProvider(new JagPrelimProvider(ContestType.AOJ_JAG, year, 'A')); // top
+          group.addProvider(new JagPrelimProvider(ContestType.AOJ_JAG, year, 'B')); // bottom
+        } else {
+          group.addProvider(new JagPrelimProvider(ContestType.AOJ_JAG, year));
+        }
+      }
+
+      return group;
+    },
   };
 };
 
@@ -286,6 +353,7 @@ export const contestTableProviderGroups = {
   joiSecondQualAndSemiFinalRound: presets.JOISecondQualAndSemiFinalRound(),
   aojIcpcPrelim: presets.AojIcpcPrelim(),
   aojIcpcRegional: presets.AojIcpcRegional(),
+  aojJagPrelim: presets.AojJagPrelim(),
 };
 
 export type ContestTableProviderGroups = keyof typeof contestTableProviderGroups;

@@ -1,0 +1,327 @@
+import { createTestCase } from '../../../test/lib/common/test_helpers';
+
+export type TestCaseForContestNameLabel = {
+  contestId: string;
+  expected: string;
+};
+
+const createTestCaseForContestNameLabel = createTestCase<TestCaseForContestNameLabel>;
+
+export const edpc = [
+  createTestCaseForContestNameLabel('DP')({
+    contestId: 'dp',
+    expected: 'EDPC',
+  }),
+];
+
+export const tdpc = [
+  createTestCaseForContestNameLabel('TDPC')({
+    contestId: 'tdpc',
+    expected: 'TDPC',
+  }),
+];
+
+export const ndpc = [
+  createTestCaseForContestNameLabel('NDPC')({
+    contestId: 'ndpc',
+    expected: 'NDPC',
+  }),
+];
+
+export const aclPractice = [
+  createTestCaseForContestNameLabel('ACL Practice')({
+    contestId: 'practice2',
+    expected: 'ACL Practice',
+  }),
+];
+
+export const atCoderOthers = [
+  createTestCaseForContestNameLabel('Chokudai SpeedRun 001')({
+    contestId: 'chokudai_S001',
+    expected: 'Chokudai SpeedRun 001',
+  }),
+  createTestCaseForContestNameLabel('Chokudai SpeedRun 002')({
+    contestId: 'chokudai_S002',
+    expected: 'Chokudai SpeedRun 002',
+  }),
+  createTestCaseForContestNameLabel('AtCoder Typical Contest 001')({
+    contestId: 'atc001',
+    expected: 'ATC 001',
+  }),
+  createTestCaseForContestNameLabel('square869120Contest #3')({
+    contestId: 's8pc-3',
+    expected: 'square869120Contest #3',
+  }),
+  createTestCaseForContestNameLabel('square869120Contest #4')({
+    contestId: 's8pc-4',
+    expected: 'square869120Contest #4',
+  }),
+  createTestCaseForContestNameLabel('第2回 ドワンゴからの挑戦状 予選')({
+    contestId: 'dwango2016-prelims',
+    expected: '第2回 ドワンゴからの挑戦状 予選',
+  }),
+  createTestCaseForContestNameLabel('CODE FESTIVAL 2015 エキシビション')({
+    contestId: 'code-festival-2015-exhibition',
+    expected: 'CODE FESTIVAL 2015 エキシビション',
+  }),
+  createTestCaseForContestNameLabel('codeFlyer （bitFlyer Programming Contest）')({
+    contestId: 'bitflyer2018-qual',
+    expected: 'codeFlyer （bitFlyer Programming Contest）',
+  }),
+  createTestCaseForContestNameLabel('技術室奥プログラミングコンテスト#4 Day2')({
+    contestId: 'tkppc4-2',
+    expected: '技術室奥プログラミングコンテスト#4 Day2',
+  }),
+  createTestCaseForContestNameLabel('パ研合宿2024 第1日「SpeedRun」')({
+    contestId: 'pakencamp-2024-day1',
+    expected: 'パ研合宿2024 第1日「SpeedRun」',
+  }),
+  createTestCaseForContestNameLabel('いろはちゃんコンテスト Day4')({
+    contestId: 'iroha2019-day4',
+    expected: 'いろはちゃんコンテスト Day4',
+  }),
+];
+
+export const atCoderMainOfficialOnsite = [
+  createTestCaseForContestNameLabel('World Tour Finals 2019')({
+    contestId: 'wtf19-open',
+    expected: 'World Tour Finals 2019',
+  }),
+  createTestCaseForContestNameLabel('World Tour Finals 2022 Day1')({
+    contestId: 'wtf22-day1-open',
+    expected: 'World Tour Finals 2022 Day1',
+  }),
+  // Note: Unlike wtf22-day1, the actual seeded contest_id has no "-open" suffix.
+  createTestCaseForContestNameLabel('World Tour Finals 2022 Day2')({
+    contestId: 'wtf22-day2',
+    expected: 'World Tour Finals 2022 Day2',
+  }),
+  createTestCaseForContestNameLabel('World Tour Finals 2024')({
+    contestId: 'awtf2024-open',
+    expected: 'World Tour Finals 2024',
+  }),
+  createTestCaseForContestNameLabel('World Tour Finals 2025 Algorithm')({
+    contestId: 'awtf2025algo-open',
+    expected: 'World Tour Finals 2025 Algorithm',
+  }),
+  createTestCaseForContestNameLabel('World Tour Finals 2026 Algorithm')({
+    contestId: 'awtf2026algo-open',
+    expected: 'World Tour Finals 2026 Algorithm',
+  }),
+];
+
+export const mathAndAlgorithm = [
+  createTestCaseForContestNameLabel('Math and Algorithm')({
+    contestId: 'math-and-algorithm',
+    expected: 'アルゴリズムと数学',
+  }),
+];
+
+export const awc = [
+  createTestCaseForContestNameLabel('AWC 0001')({
+    contestId: 'awc0001',
+    expected: 'AWC 0001',
+  }),
+  createTestCaseForContestNameLabel('AWC 0002')({
+    contestId: 'awc0002',
+    expected: 'AWC 0002',
+  }),
+  createTestCaseForContestNameLabel('AWC 9999')({
+    contestId: 'awc9999',
+    expected: 'AWC 9999',
+  }),
+];
+
+export const fps24 = [
+  createTestCaseForContestNameLabel('FPS 24')({
+    contestId: 'fps-24',
+    expected: 'FPS 24 題',
+  }),
+];
+
+export const aojCourses = [
+  createTestCaseForContestNameLabel('AOJ, ITP1')({
+    contestId: 'ITP1',
+    expected: '（プログラミング入門）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, ALDS1')({
+    contestId: 'ALDS1',
+    expected: '（アルゴリズムとデータ構造入門）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, ITP2')({
+    contestId: 'ITP2',
+    expected: '（プログラミング応用）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, DPL')({
+    contestId: 'DPL',
+    expected: '（組み合わせ最適化）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, GRL')({
+    contestId: 'GRL',
+    expected: '（グラフ）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, DSL')({
+    contestId: 'DSL',
+    expected: '（データ構造）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, CGL')({
+    contestId: 'CGL',
+    expected: '（計算幾何学）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, NTL')({
+    contestId: 'NTL',
+    expected: '（整数論）',
+  }),
+];
+
+export const aojPck = [
+  createTestCaseForContestNameLabel('AOJ, PCK Prelim 2024')({
+    contestId: 'PCKPrelim2024',
+    expected: '（パソコン甲子園 予選 2024）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, PCK Final 2023')({
+    contestId: 'PCKFinal2023',
+    expected: '（パソコン甲子園 本選 2023）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, PCK Prelim 2005')({
+    contestId: 'PCKPrelim2005',
+    expected: '（パソコン甲子園 予選 2005）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, PCK Final 2004')({
+    contestId: 'PCKFinal2004',
+    expected: '（パソコン甲子園 本選 2004）',
+  }),
+];
+
+export const aojJag = [
+  createTestCaseForContestNameLabel('AOJ, JAG Prelim 2016 A')({
+    contestId: 'JAGPrelim2016A',
+    expected: '（JAG 模擬国内 2016A）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, JAG Prelim 2016 B')({
+    contestId: 'JAGPrelim2016B',
+    expected: '（JAG 模擬国内 2016B）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, JAG Summer 2024 day2')({
+    contestId: 'JAGSummer2024-day2',
+    expected: '（JAG 夏合宿 2024 Day2）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, JAG Winter 2009')({
+    contestId: 'JAGWinter2009',
+    expected: '（JAG 冬合宿 2009）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, JAG Spring 2012')({
+    contestId: 'JAGSpring2012',
+    expected: '（JAG 春合宿 2012）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, JAG Summer 2012 day3A')({
+    contestId: 'JAGSummer2012-day3A',
+    expected: '（JAG 夏合宿 2012 Day3A）',
+  }),
+];
+
+export const aojIcpc = [
+  createTestCaseForContestNameLabel('ICPC Prelim 2024')({
+    contestId: 'ICPCPrelim2024',
+    expected: '（ICPC 国内予選 2024）',
+  }),
+  createTestCaseForContestNameLabel('ICPC Regional 2024')({
+    contestId: 'ICPCRegional2024',
+    expected: '（ICPC アジア地区 2024）',
+  }),
+  createTestCaseForContestNameLabel('ICPC Prelim 2023')({
+    contestId: 'ICPCPrelim2023',
+    expected: '（ICPC 国内予選 2023）',
+  }),
+  createTestCaseForContestNameLabel('ICPC Regional 2023')({
+    contestId: 'ICPCRegional2023',
+    expected: '（ICPC アジア地区 2023）',
+  }),
+];
+
+export const aojUniversity = [
+  createTestCaseForContestNameLabel('AOJ, RUPC 2018 in ACPC 2018 Day1')({
+    contestId: 'AOJ-RUPC2018-in-ACPC2018-day1',
+    expected: '（RUPC 2018 in ACPC 2018 Day1）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, HUPC 2020 in HUPC 2020 Day1')({
+    contestId: 'AOJ-HUPC2020-in-HUPC2020-day1',
+    expected: '（HUPC 2020 in HUPC 2020 Day1）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, UAPC 2019 in RUPC 2019 Day2')({
+    contestId: 'AOJ-UAPC2019-in-RUPC2019-day2',
+    expected: '（ACPC 2019 in RUPC 2019 Day2）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, UAPC 2003')({
+    contestId: 'AOJ-UAPC2003',
+    expected: '（ACPC 2003）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, UAPC 2011 Summer')({
+    contestId: 'AOJ-UAPC2011-summer',
+    expected: '（ACPC 2011 Summer）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, UAPC 2012 Day1')({
+    contestId: 'AOJ-UAPC2012-day1',
+    expected: '（ACPC 2012 Day1）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, OUPC 2012 in RUPC 2012 Day2')({
+    contestId: 'AOJ-OUPC2012-in-RUPC2012-day2',
+    expected: '（OUPC 2012 in RUPC 2012 Day2）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, HUPC 2014 in RUPC 2014 Day3')({
+    contestId: 'AOJ-HUPC2014-in-RUPC2014-day3',
+    expected: '（HUPC 2014 in RUPC 2014 Day3）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, RUPC 2018 in RUPC 2018 Day1')({
+    contestId: 'AOJ-RUPC2018-in-RUPC2018-day1',
+    expected: '（RUPC 2018 in RUPC 2018 Day1）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, HUPC 2023 in OUPC 2023 Day2')({
+    contestId: 'AOJ-HUPC2023-in-OUPC2023-day2',
+    expected: '（HUPC 2023 in OUPC 2023 Day2）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, UAPC 2015 in ACPC 2015 Day2')({
+    contestId: 'AOJ-UAPC2015-in-ACPC2015-day2',
+    expected: '（ACPC 2015 in ACPC 2015 Day2）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, UAPC 2017 in ACPC 2017 Day2')({
+    contestId: 'AOJ-UAPC2017-in-ACPC2017-day2',
+    expected: '（ACPC 2017 in ACPC 2017 Day2）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, RUPC 2025 in ACPC 2025 Day1')({
+    contestId: 'AOJ-RUPC2025-in-ACPC2025-day1',
+    expected: '（RUPC 2025 in ACPC 2025 Day1）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, HUPC 2018 in ACPC 2018 Day3')({
+    contestId: 'AOJ-HUPC2018-in-ACPC2018-day3',
+    expected: '（HUPC 2018 in ACPC 2018 Day3）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, UAPC 2018 in RUPC 2018 Day2')({
+    contestId: 'AOJ-UAPC2018-in-RUPC2018-day2',
+    expected: '（ACPC 2018 in RUPC 2018 Day2）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, RUPC 2017 in ACPC 2017 Day1')({
+    contestId: 'AOJ-RUPC2017-in-ACPC2017-day1',
+    expected: '（RUPC 2017 in ACPC 2017 Day1）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, HUPC 2019 in HUPC 2019 Day2')({
+    contestId: 'AOJ-HUPC2019-in-HUPC2019-day2',
+    expected: '（HUPC 2019 in HUPC 2019 Day2）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, HUPC 2020 in HUPC 2020 Day3')({
+    contestId: 'AOJ-HUPC2020-in-HUPC2020-day3',
+    expected: '（HUPC 2020 in HUPC 2020 Day3）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, OUPC 2020')({
+    contestId: 'AOJ-OUPC2020',
+    expected: '（OUPC 2020）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, OUPC 2024 Day1')({
+    contestId: 'AOJ-OUPC2024-day1',
+    expected: '（OUPC 2024 Day1）',
+  }),
+  createTestCaseForContestNameLabel('AOJ, UTPC 2010')({
+    contestId: 'AOJ-UTPC2010',
+    expected: '（UTPC 2010）',
+  }),
+];

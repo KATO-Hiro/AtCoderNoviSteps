@@ -1,9 +1,9 @@
 import { describe, test, expect, beforeEach, afterEach } from 'vitest';
 
-import { ContestType } from '$lib/types/contest';
+import { ContestType } from '$lib/contests/types/contest';
 import type { TaskResults } from '$lib/types/task';
 
-import { ICPC_LABEL_OVERRIDES } from './aoj_icpc_labels';
+import { AOJ_LABEL_OVERRIDES } from './aoj_labels';
 import { AojIcpcPrelimProvider, AojIcpcRegionalProvider } from './aoj_icpc_providers';
 
 const createProvider = (year: number) => new AojIcpcPrelimProvider(ContestType.AOJ_ICPC, year);
@@ -83,46 +83,62 @@ const tasks2023: TaskResults = [
   },
 ] as TaskResults;
 
-// ICPCPrelim2025: 9 problems (A–I), latest year and maximum problem count
-const tasks2025: TaskResults = [
-  { contest_id: 'ICPCPrelim2025', task_id: '1681', task_table_index: '1681', title: '2025' },
+// ICPCPrelim2026: 10 problems (A–J), latest year and maximum problem count
+const tasks2026: TaskResults = [
   {
-    contest_id: 'ICPCPrelim2025',
-    task_id: '1682',
-    task_table_index: '1682',
-    title: 'Prefix and Suffix Can Be the Same',
+    contest_id: 'ICPCPrelim2026',
+    task_id: '1690',
+    task_table_index: '1690',
+    title: 'Find the Strongest Card',
   },
   {
-    contest_id: 'ICPCPrelim2025',
-    task_id: '1683',
-    task_table_index: '1683',
-    title: 'Calendar of an Enthusiastic Worker',
+    contest_id: 'ICPCPrelim2026',
+    task_id: '1691',
+    task_table_index: '1691',
+    title: 'Vending Machines',
   },
   {
-    contest_id: 'ICPCPrelim2025',
-    task_id: '1684',
-    task_table_index: '1684',
-    title: 'Ancient Game Board',
+    contest_id: 'ICPCPrelim2026',
+    task_id: '1692',
+    task_table_index: '1692',
+    title: 'Water Remaining',
   },
   {
-    contest_id: 'ICPCPrelim2025',
-    task_id: '1685',
-    task_table_index: '1685',
-    title: 'To Be Discontinued',
+    contest_id: 'ICPCPrelim2026',
+    task_id: '1693',
+    task_table_index: '1693',
+    title: 'Frequency Sequence',
   },
-  { contest_id: 'ICPCPrelim2025', task_id: '1686', task_table_index: '1686', title: 'Dog Tricks' },
   {
-    contest_id: 'ICPCPrelim2025',
-    task_id: '1687',
-    task_table_index: '1687',
-    title: 'Number of Faces',
+    contest_id: 'ICPCPrelim2026',
+    task_id: '1694',
+    task_table_index: '1694',
+    title: 'Shopping Master',
   },
-  { contest_id: 'ICPCPrelim2025', task_id: '1688', task_table_index: '1688', title: 'Parentheses' },
   {
-    contest_id: 'ICPCPrelim2025',
-    task_id: '1689',
-    task_table_index: '1689',
-    title: 'Preparing the Lunch',
+    contest_id: 'ICPCPrelim2026',
+    task_id: '1695',
+    task_table_index: '1695',
+    title: 'Optimizing a Map Application',
+  },
+  {
+    contest_id: 'ICPCPrelim2026',
+    task_id: '1696',
+    task_table_index: '1696',
+    title: 'Avoid Collision',
+  },
+  {
+    contest_id: 'ICPCPrelim2026',
+    task_id: '1697',
+    task_table_index: '1697',
+    title: 'Sorting Swim Rings',
+  },
+  { contest_id: 'ICPCPrelim2026', task_id: '1698', task_table_index: '1698', title: 'Speed Limit' },
+  {
+    contest_id: 'ICPCPrelim2026',
+    task_id: '1699',
+    task_table_index: '1699',
+    title: 'Maximum Scaling',
   },
 ] as TaskResults;
 
@@ -322,7 +338,7 @@ describe('AojIcpcPrelimProvider', () => {
 
   describe('year boundary behavior', () => {
     const provider1998 = createProvider(1998);
-    const provider2025 = createProvider(2025);
+    const provider2026 = createProvider(2026);
 
     test('oldest year 1998 returns correct metadata (4 problems, A–D)', () => {
       expect(provider1998.getMetadata().title).toBe('ICPC 国内予選 1998');
@@ -348,24 +364,24 @@ describe('AojIcpcPrelimProvider', () => {
       expect(filtered.every((task) => task.contest_id === 'ICPCPrelim1998')).toBe(true);
     });
 
-    test('latest year 2025 returns correct metadata (9 problems, A–I)', () => {
-      expect(provider2025.getMetadata().title).toBe('ICPC 国内予選 2025');
-      expect(provider2025.getMetadata().abbreviationName).toBe('icpcPrelim2025');
+    test('latest year 2026 returns correct metadata (10 problems, A–J)', () => {
+      expect(provider2026.getMetadata().title).toBe('ICPC 国内予選 2026');
+      expect(provider2026.getMetadata().abbreviationName).toBe('icpcPrelim2026');
     });
 
-    test('latest year 2025 stores raw titles (maximum problem count)', () => {
-      const table = provider2025.generateTable(tasks2025);
+    test('latest year 2026 stores raw titles (maximum problem count)', () => {
+      const table = provider2026.generateTable(tasks2026);
 
-      expect(table['ICPCPrelim2025']['1681'].title).toBe('2025');
-      expect(table['ICPCPrelim2025']['1689'].title).toBe('Preparing the Lunch');
+      expect(table['ICPCPrelim2026']['1690'].title).toBe('Find the Strongest Card');
+      expect(table['ICPCPrelim2026']['1699'].title).toBe('Maximum Scaling');
     });
 
-    test('latest year 2025 filter isolates its own contest_id', () => {
-      const mixed = [...tasks2025, ...tasks2023] as TaskResults;
-      const filtered = provider2025.filter(mixed);
+    test('latest year 2026 filter isolates its own contest_id', () => {
+      const mixed = [...tasks2026, ...tasks2023] as TaskResults;
+      const filtered = provider2026.filter(mixed);
 
-      expect(filtered).toHaveLength(9);
-      expect(filtered.every((task) => task.contest_id === 'ICPCPrelim2025')).toBe(true);
+      expect(filtered).toHaveLength(10);
+      expect(filtered.every((task) => task.contest_id === 'ICPCPrelim2026')).toBe(true);
     });
   });
 
@@ -379,14 +395,14 @@ describe('AojIcpcPrelimProvider', () => {
     ] as TaskResults;
 
     beforeEach(() => {
-      ICPC_LABEL_OVERRIDES[TEST_CONTEST_ID] = {
+      AOJ_LABEL_OVERRIDES[TEST_CONTEST_ID] = {
         '9001': 'X',
         '9002': 'Y',
       };
     });
 
     afterEach(() => {
-      delete ICPC_LABEL_OVERRIDES[TEST_CONTEST_ID];
+      delete AOJ_LABEL_OVERRIDES[TEST_CONTEST_ID];
     });
 
     test('generateTable stores raw titles even when override map is active', () => {
@@ -448,17 +464,17 @@ describe('AojIcpcPrelimProvider', () => {
       ] as TaskResults;
 
       beforeEach(() => {
-        ICPC_LABEL_OVERRIDES[TEST_CONTEST_ID] = {
+        AOJ_LABEL_OVERRIDES[TEST_CONTEST_ID] = {
           '9001': 'X',
           '9002': 'Y',
         };
       });
 
       afterEach(() => {
-        delete ICPC_LABEL_OVERRIDES[TEST_CONTEST_ID];
+        delete AOJ_LABEL_OVERRIDES[TEST_CONTEST_ID];
       });
 
-      test('returns custom labels from ICPC_LABEL_OVERRIDES', () => {
+      test('returns custom labels from AOJ_LABEL_OVERRIDES', () => {
         const provider = createProvider(TEST_YEAR);
         const labels = provider.getTaskLabels(overrideTasks);
 
@@ -867,14 +883,14 @@ describe('AojIcpcRegionalProvider', () => {
       ] as TaskResults;
 
       beforeEach(() => {
-        ICPC_LABEL_OVERRIDES[TEST_CONTEST_ID] = { '8001': 'X', '8002': 'Y' };
+        AOJ_LABEL_OVERRIDES[TEST_CONTEST_ID] = { '8001': 'X', '8002': 'Y' };
       });
 
       afterEach(() => {
-        delete ICPC_LABEL_OVERRIDES[TEST_CONTEST_ID];
+        delete AOJ_LABEL_OVERRIDES[TEST_CONTEST_ID];
       });
 
-      test('returns custom labels from ICPC_LABEL_OVERRIDES', () => {
+      test('returns custom labels from AOJ_LABEL_OVERRIDES', () => {
         const provider = createRegionalProvider(TEST_YEAR);
         const labels = provider.getTaskLabels(overrideTasks);
 

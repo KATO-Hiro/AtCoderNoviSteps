@@ -5,7 +5,7 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {
-    exclude: ['@prisma/client', '@lucia-auth/adapter-prisma'],
+    exclude: ['@prisma/client'],
   },
   test: {
     include: [
@@ -22,7 +22,8 @@ export default defineConfig({
       'dist/**',
       'node_modules/**',
     ],
-    environment: 'jsdom',
+    // Default to node; DOM-dependent tests opt in via `// @vitest-environment jsdom`.
+    environment: 'node',
     globals: true,
     coverage: {
       provider: 'v8',
